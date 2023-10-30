@@ -9,6 +9,10 @@ cant_nodos_visitados_dfs = [0]
 cant_nodos_visitados_bfs = [0]
 cant_nodos_visitados_ucs = [0]
 cant_nodos_visitados_astar = [0]
+
+# P es la posición inicial del pacman
+# O indica la presencia de un obstáculo
+# F es la posición final/objetivo
 juego = [
   [' ', ' ', ' ', ' ', ' '],
   [' ', 'O', 'O', 'O', ' '],
