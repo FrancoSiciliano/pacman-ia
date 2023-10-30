@@ -22,9 +22,9 @@ def dfs_search(matrix, visited, position, cycle_count):
 
 cycle_count = [0]
 pacman = 'P'
-pacman_position = Util.get_target_position(Util.game_matrix, pacman)
+pacman_position = Util.obtener_posicion_objetivo(Util.matriz_pacman, pacman)
 
-solution_path = dfs_search(Util.game_matrix, [], pacman_position, cycle_count)
+solution_path = dfs_search(Util.matriz_pacman, [], pacman_position, cycle_count)
 print("Number of cycles in DFS:", cycle_count[0])
 
 if solution_path is not None:

@@ -1,14 +1,14 @@
 import Util
 
 
-def busqueda_bfs(matriz, posicion, cycle_count):
+def busqueda_bfs(matriz, posicion, nodos_visitados):
     recorrido = set()
     camino = []
     fila = [(posicion, camino)]
     objetivo = 'F'    
 
     recorrido.add(posicion)
-    cycle_count[0] += 1     # Keep track the quantity of nodes visited
+    nodos_visitados[0] += 1    
 
     while fila:
         posicion_actual, camino = fila.pop(0)
@@ -16,25 +16,25 @@ def busqueda_bfs(matriz, posicion, cycle_count):
         if Util.objetivo_alcanzado(matriz, posicion_actual, objetivo):
             return camino + [posicion_actual]
 
-        actions = Util.acciones_pacman(matriz, recorrido, posicion_actual)
-        for action in actions:
-            new_position = Util.obtener_nueva_posicion(posicion_actual, action)
-            new_path = camino + [posicion_actual]
-            fila.append((new_position, new_path))
-            recorrido.add(new_position)
-            cycle_count[0] += 1
+        acciones = Util.acciones_pacman(matriz, recorrido, posicion_actual)
+        for accion in acciones:
+            nueva_posicion = Util.obtener_nueva_posicion(posicion_actual, accion)
+            nuevo_camino = camino + [posicion_actual]
+            fila.append((nueva_posicion, nuevo_camino))
+            recorrido.add(nueva_posicion)
+            nodos_visitados[0] += 1
 
     return None
 
 
-cycle_count = [0]
+nodos_visitados = [0]
 pacman = 'P'
-pacman_position = Util.get_target_position(Util.game_matrix, pacman)
+posicion_pacman = Util.obtener_posicion_objetivo(Util.matriz_pacman, pacman)
 
-solution_path = busqueda_bfs(Util.game_matrix, pacman_position, cycle_count)
-print("Number of cycles in BFS:", cycle_count[0])
+solucion = busqueda_bfs(Util.matriz_pacman, posicion_pacman, nodos_visitados)
+print("Number of cycles in BFS:", nodos_visitados[0])
 
-if solution_path is not None:
-    print('Path of BFS:', solution_path)
+if solucion is not None:
+    print('Path of BFS:', solucion)
 else:
     print("No solution found for BFS.")

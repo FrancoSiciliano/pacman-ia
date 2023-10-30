@@ -45,9 +45,9 @@ def get_cost(action):
 
 cycle_count = [0]
 pacman = 'P'
-pacman_position = Util.get_target_position(Util.game_matrix, pacman)
+pacman_position = Util.obtener_posicion_objetivo(Util.matriz_pacman, pacman)
 
-solution = ucs_search(Util.game_matrix, pacman_position, cycle_count)
+solution = ucs_search(Util.matriz_pacman, pacman_position, cycle_count)
 print("Number of cycles in UCS:", cycle_count[0])
 
 if solution is not None:

@@ -1,4 +1,4 @@
-from Util import print_game_matrix, game_matrix
+from Util import print_game_matrix, matriz_pacman
 
 print('Game Matrix used for all algorithms')
 print_game_matrix()

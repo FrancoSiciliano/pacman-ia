@@ -39,10 +39,10 @@ def astar_search(matrix, position, goal, cycle_count):
 
 cycle_count = [0]
 pacman = 'P'
-pacman_position = Util.get_target_position(Util.game_matrix, pacman)
-food_position = Util.get_target_position(Util.game_matrix, 'F')
+pacman_position = Util.obtener_posicion_objetivo(Util.matriz_pacman, pacman)
+food_position = Util.obtener_posicion_objetivo(Util.matriz_pacman, 'F')
 
-solution = astar_search(Util.game_matrix, pacman_position, food_position, cycle_count)
+solution = astar_search(Util.matriz_pacman, pacman_position, food_position, cycle_count)
 print("Number of cycles in A*:", cycle_count[0])
 
 if solution is not None:
