@@ -1,6 +1,5 @@
 import heapq
 import math
-
 import Utils
 
 def astar(mapa, posicion, objetivo, cant_ciclos):

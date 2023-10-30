@@ -49,3 +49,9 @@ def imprimir_solucion(solucion, juego):
 
     for col in juego:
         print(col)
+
+def objetivo_alcanzado(matrix, position, goal):
+  position_x = position[0]
+  position_y = position[1]
+
+  return matrix[position_x][position_y] == goal
