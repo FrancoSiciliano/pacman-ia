@@ -37,17 +37,18 @@ def get_nueva_posicion(posicion, accion):
   elif accion == 'ABAJO':
     return posicion[0], posicion[1] - 1
   
-def imprimir_solucion(solucion, juego):
+def imprimir_solucion(solucion, juego, pos_final):
     simbolos = ['|', '-']
+    aux = juego.copy()
 
     for i in range(0, len(solucion)):
         if i != 0 and i != len(solucion) - 1:
-            if solucion[i] != (2,3) and (solucion[i][0] != solucion[i + 1][0]):
-                juego[solucion[i][0]][solucion[i][1]] = simbolos[0]
+            if solucion[i] != pos_final and (solucion[i][0] != solucion[i + 1][0]):
+                aux[solucion[i][0]][solucion[i][1]] = simbolos[0]
             else:
-                juego[solucion[i][0]][solucion[i][1]] = simbolos[1]
+                aux[solucion[i][0]][solucion[i][1]] = simbolos[1]
 
-    for col in juego:
+    for col in aux:
         print(col)
 
 def objetivo_alcanzado(matrix, position, goal):

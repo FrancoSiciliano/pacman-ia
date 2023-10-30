@@ -2,7 +2,7 @@ import heapq
 import Utils
 
 
-def ucs(mapa, posicion, cant_ciclos):
+def ucs(mapa, posicion, cant_nodos_visitados):
     
     visitados = set() # conjunto de posiciones ya visitadas
     cola = [] # cola de los próximos nodos a visitar
@@ -12,7 +12,7 @@ def ucs(mapa, posicion, cant_ciclos):
 
     heapq.heappush(cola, (costo, posicion, camino))
     visitados.add(posicion)
-    cant_ciclos[0] += 1
+    cant_nodos_visitados[0] += 1
 
     while cola:
         costo_act, pos_act, camino = heapq.heappop(cola) # datos del nodo a evaluar
@@ -31,29 +31,6 @@ def ucs(mapa, posicion, cant_ciclos):
             
             visitados.add(nueva_pos)
             
-            cant_ciclos[0] += 1
+            cant_nodos_visitados[0] += 1
 
     return None
-
-#Ejemplo de ejecución
-cant_ciclos = [0]
-juego = [
-  [' ', ' ', ' ', ' ', ' '],
-  [' ', 'O', 'O', 'O', ' '],
-  ['P', ' ', 'O', 'F', ' '],
-  [' ', ' ', 'O', ' ', ' ']
-]
-
-pos_p = (2, 0)
-pos_obj = (2, 3)
-
-
-solucion = ucs(juego, pos_p, cant_ciclos)
-
-if solucion is not None:
-    print("Se utilizaron ", cant_ciclos[0], "ciclos.")
-    print("Camino con UCS:", solucion)
-    Utils.imprimir_solucion(solucion, juego)
-
-else:
-    print("No existe solución.")
