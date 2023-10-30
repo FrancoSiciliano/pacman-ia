@@ -1,4 +1,4 @@
-game_matrix = [
+matriz_pacman = [
   ['-', '-', '-', '-', '-'],
   ['-', 'W', '-', '-', '-'],
   ['P', '-', 'W', 'F', '-'],
@@ -7,7 +7,7 @@ game_matrix = [
 
 
 def print_game_matrix():
-  for row in game_matrix:
+  for row in matriz_pacman:
     print(row)
   print()
 
@@ -29,7 +29,7 @@ def objetivo_alcanzado(matrix, position, goal):
   return matrix[position_x][position_y] == goal
 
 
-def get_target_position(matrix, target):
+def obtener_posicion_objetivo(matrix, target):
   matrix_size = len(matrix)
   for row in range(matrix_size):
     for column in range(matrix_size):

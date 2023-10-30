@@ -1,14 +1,14 @@
 import Util
 
 
-def busqueda_bfs(matriz, posicion, cycle_count):
-    recorrido = set()
+def busqueda_bfs(matriz, posicion, nodos_visitados):
+    objetivo = 'F'  
     camino = []
-    fila = [(posicion, camino)]
-    objetivo = 'F'    
-
+    recorrido = set()
     recorrido.add(posicion)
-    cycle_count[0] += 1     # Keep track the quantity of nodes visited
+    fila = [(posicion, camino)]
+      
+    nodos_visitados += 1    
 
     while fila:
         posicion_actual, camino = fila.pop(0)
@@ -16,25 +16,25 @@ def busqueda_bfs(matriz, posicion, cycle_count):
         if Util.objetivo_alcanzado(matriz, posicion_actual, objetivo):
             return camino + [posicion_actual]
 
-        actions = Util.acciones_pacman(matriz, recorrido, posicion_actual)
-        for action in actions:
-            new_position = Util.obtener_nueva_posicion(posicion_actual, action)
-            new_path = camino + [posicion_actual]
-            fila.append((new_position, new_path))
-            recorrido.add(new_position)
-            cycle_count[0] += 1
+        acciones = Util.acciones_pacman(matriz, recorrido, posicion_actual)
+        for accion in acciones:
+            nuevo_camino = camino + [posicion_actual]
+            nueva_posicion = Util.obtener_nueva_posicion(posicion_actual, accion)
+            recorrido.add(nueva_posicion)
+            fila.append((nueva_posicion, nuevo_camino))
+            nodos_visitados += 1
 
     return None
 
 
-cycle_count = [0]
+nodos_visitados = 0
 pacman = 'P'
-pacman_position = Util.get_target_position(Util.game_matrix, pacman)
+posicion_pacman = Util.obtener_posicion_objetivo(Util.matriz_pacman, pacman)
 
-solution_path = busqueda_bfs(Util.game_matrix, pacman_position, cycle_count)
-print("Number of cycles in BFS:", cycle_count[0])
+solucion = busqueda_bfs(Util.matriz_pacman, posicion_pacman, nodos_visitados)
+print("Cantidad de ciclos:", nodos_visitados)
 
-if solution_path is not None:
-    print('Path of BFS:', solution_path)
+if solucion is not None:
+    print('Camino resultado:', solucion)
 else:
-    print("No solution found for BFS.")
+    print("No se encontró una solución.")
