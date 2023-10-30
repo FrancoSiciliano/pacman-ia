@@ -1,33 +1,33 @@
 import Util
 
 
-def dfs_search(matrix, visited, position, cycle_count):
-    if position not in visited:
-        visited.append(position)
-        cycle_count[0] += 1     # Keep track the quantity of nodes visited
-        target_to_complete = 'F'  # This represents the food to obtain
+def busqueda_dfs(matriz, visitados, posicion, nodos_visitados):
+    if posicion not in visitados:
+        objetivo = 'F' 
+        visitados.append(posicion)
+        nodos_visitados += 1     
 
-        if Util.objetivo_alcanzado(matrix, position, target_to_complete):
-            return visited
+        if Util.objetivo_alcanzado(matriz, posicion, objetivo):
+            return visitados
             
-        actions = Util.acciones_pacman(matrix, visited, position)
-        for action in actions:
-            new_position = Util.obtener_nueva_posicion(position, action)
-            result = dfs_search(matrix, visited[:], new_position, cycle_count)
+        acciones = Util.acciones_pacman(matriz, visitados, posicion)
+        for accion in acciones:
+            nueva_posicion = Util.obtener_nueva_posicion(posicion, accion)
+            resultado = busqueda_dfs(matriz, visitados[:], nueva_posicion, nodos_visitados)
 
-            if result is not None:
-                return result
+            if resultado is not None:
+                return resultado
     return None
 
 
-cycle_count = [0]
+nodos_visitados = 0
 pacman = 'P'
-pacman_position = Util.obtener_posicion_objetivo(Util.matriz_pacman, pacman)
+posicion_pacman = Util.obtener_posicion_objetivo(Util.matriz_pacman, pacman)
 
-solution_path = dfs_search(Util.matriz_pacman, [], pacman_position, cycle_count)
-print("Number of cycles in DFS:", cycle_count[0])
+solucion = busqueda_dfs(Util.matriz_pacman, [], posicion_pacman, nodos_visitados)
+print("Cantidad de ciclos:", nodos_visitados)
 
-if solution_path is not None:
-    print('Path of DFS:', solution_path)
+if solucion is not None:
+    print('Camino resultado:', solucion)
 else:
-    print("No solution found for DFS.")
+    print("No se encontró una solución.")
