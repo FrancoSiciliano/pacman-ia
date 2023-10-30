@@ -8,7 +8,7 @@ def busqueda_bfs(matriz, posicion, nodos_visitados):
     recorrido.add(posicion)
     fila = [(posicion, camino)]
       
-    nodos_visitados += 1    
+    nodos_visitados[0] += 1    
 
     while fila:
         posicion_actual, camino = fila.pop(0)
@@ -22,17 +22,17 @@ def busqueda_bfs(matriz, posicion, nodos_visitados):
             nueva_posicion = Util.obtener_nueva_posicion(posicion_actual, accion)
             recorrido.add(nueva_posicion)
             fila.append((nueva_posicion, nuevo_camino))
-            nodos_visitados += 1
+            nodos_visitados[0] += 1
 
     return None
 
 
-nodos_visitados = 0
+nodos_visitados = [0]
 pacman = 'P'
 posicion_pacman = Util.obtener_posicion_objetivo(Util.matriz_pacman, pacman)
 
 solucion = busqueda_bfs(Util.matriz_pacman, posicion_pacman, nodos_visitados)
-print("Cantidad de ciclos:", nodos_visitados)
+print("Cantidad de ciclos:", nodos_visitados[0])
 
 if solucion is not None:
     print('Camino resultado:', solucion)
