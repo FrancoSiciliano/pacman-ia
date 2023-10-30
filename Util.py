@@ -22,7 +22,7 @@ def is_in_matrix_limits(matrix, position_x, position_y):
   return False
 
 
-def is_goal_complete(matrix, position, goal):
+def objetivo_alcanzado(matrix, position, goal):
   position_x = position[0]
   position_y = position[1]
 
@@ -37,7 +37,7 @@ def get_target_position(matrix, target):
         return row, column
 
 
-def get_pacman_actions(matrix, visited, pacman_position):
+def acciones_pacman(matrix, visited, pacman_position):
   pacman_position_x = pacman_position[0]
   pacman_position_y = pacman_position[1]
 
@@ -66,7 +66,7 @@ def get_pacman_actions(matrix, visited, pacman_position):
   return actions
 
 
-def get_new_position(position, action):
+def obtener_nueva_posicion(position, action):
   if action == 'LEFT':
     return position[0] - 1, position[1]
   elif action == 'RIGHT':

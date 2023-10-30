@@ -24,9 +24,9 @@ def astar_search(matrix, position, goal, cycle_count):
         if current_position == goal:
             return path + [current_position]
 
-        actions = Util.get_pacman_actions(matrix, visited, current_position)
+        actions = Util.acciones_pacman(matrix, visited, current_position)
         for action in actions:
-            new_position = Util.get_new_position(current_position, action)
+            new_position = Util.obtener_nueva_posicion(current_position, action)
             new_path = path + [current_position]
             new_cost = current_cost + 1  # We consider a uniform cost of 1 by movement
             priority = new_cost + calculate_heuristic(new_position, goal)

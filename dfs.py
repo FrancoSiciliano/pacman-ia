@@ -7,12 +7,12 @@ def dfs_search(matrix, visited, position, cycle_count):
         cycle_count[0] += 1     # Keep track the quantity of nodes visited
         target_to_complete = 'F'  # This represents the food to obtain
 
-        if Util.is_goal_complete(matrix, position, target_to_complete):
+        if Util.objetivo_alcanzado(matrix, position, target_to_complete):
             return visited
             
-        actions = Util.get_pacman_actions(matrix, visited, position)
+        actions = Util.acciones_pacman(matrix, visited, position)
         for action in actions:
-            new_position = Util.get_new_position(position, action)
+            new_position = Util.obtener_nueva_posicion(position, action)
             result = dfs_search(matrix, visited[:], new_position, cycle_count)
 
             if result is not None:

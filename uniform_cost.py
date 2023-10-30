@@ -17,12 +17,12 @@ def ucs_search(matrix, position, cycle_count):
     while queue:
         current_cost, current_position, path = heapq.heappop(queue)
 
-        if Util.is_goal_complete(matrix, current_position, target_to_complete):
+        if Util.objetivo_alcanzado(matrix, current_position, target_to_complete):
             return path + [current_position]
 
-        actions = Util.get_pacman_actions(matrix, visited, current_position)
+        actions = Util.acciones_pacman(matrix, visited, current_position)
         for action in actions:
-            new_position = Util.get_new_position(current_position, action)
+            new_position = Util.obtener_nueva_posicion(current_position, action)
             new_path = path + [current_position]
             new_cost = current_cost + get_cost(action)
             heapq.heappush(queue, (new_cost, new_position, new_path))
