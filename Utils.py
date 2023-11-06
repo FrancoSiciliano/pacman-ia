@@ -51,8 +51,8 @@ def imprimir_solucion(solucion, juego, pos_final):
     for col in aux:
         print(col)
 
-def objetivo_alcanzado(matrix, position, goal):
-  position_x = position[0]
-  position_y = position[1]
+def objetivo_alcanzado(matriz, posicion, objetivo):
+  position_x = posicion[0]
+  position_y = posicion[1]
 
-  return matrix[position_x][position_y] == goal
+  return matriz[position_x][position_y] == objetivo
