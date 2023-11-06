@@ -52,7 +52,7 @@ def imprimir_solucion(solucion, juego, pos_final):
         print(col)
 
 def objetivo_alcanzado(matriz, posicion, objetivo):
-  position_x = posicion[0]
-  position_y = posicion[1]
+  pos_x = posicion[0]
+  pos_y = posicion[1]
 
-  return matriz[position_x][position_y] == objetivo
+  return matriz[pos_x][pos_y] == objetivo
